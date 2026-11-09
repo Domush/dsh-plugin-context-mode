@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "上下文模式 (Context Mode)",
+    "description": "原生集成 context-mode (https://github.com/mksglu/context-mode)：利用本地 SQLite FTS5 搜索、沙箱代码执行与会话日志，大幅精简上下文占用，防止上下文窗口膨胀与性能衰减。"
+  }
+}

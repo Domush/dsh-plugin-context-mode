@@ -1,0 +1,65 @@
+{
+  "name": "dsh-plugin-context-mode",
+  "version": "1.0.0",
+  "description": "Native DSH plugin for context-mode: SQLite FTS5 indexing, sandboxed execution, and context window protection",
+  "type": "module",
+  "license": "MIT",
+  "author": "Phillip Webber <github@webbsense.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Domush/dsh-plugin-context-mode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Domush/dsh-plugin-context-mode/issues"
+  },
+  "homepage": "https://github.com/Domush/dsh-plugin-context-mode#readme",
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "context-mode",
+    "context-window",
+    "fts5",
+    "bm25",
+    "rrf",
+    "sandbox",
+    "compression"
+  ],
+  "scripts": {
+    "test": "node --test tests/test.js tests/test_plugin.js"
+  },
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "lib",
+    "locale",
+    "icon.svg",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-settings"
+      ]
+    }
+  }
+}

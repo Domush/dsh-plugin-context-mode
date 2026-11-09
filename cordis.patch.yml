@@ -1,0 +1,8 @@
+- insert:
+    - id: dsh-plugin-context-mode
+      name: dsh-plugin-context-mode
+      config:
+        enabled: true
+        autoIntercept: true
+        replaceTriggerBytes: 4096
+        injectSystemPrompt: true
