@@ -1,6 +1,6 @@
 {
   "name": "dsh-plugin-context-mode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Native DSH plugin for context-mode: SQLite FTS5 indexing, sandboxed execution, and context window protection",
   "type": "module",
   "license": "MIT",

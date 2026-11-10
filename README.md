@@ -1,6 +1,7 @@
 # dsh-plugin-context-mode
 
-[![DeepSeek Harness](https://img.shields.io/badge/DSH-Plugin-0284c7.svg)](https://github.com/deepseek-ai)
+[![npm version](https://img.shields.io/npm/v/dsh-plugin-context-mode.svg)](https://www.npmjs.com/package/dsh-plugin-context-mode)
+[![DSH Plugin](https://img.shields.io/badge/DSH-Plugin-blue.svg)](https://github.com/deepseek-ai)
 [![Context Mode](https://img.shields.io/badge/Context%20Mode-v2.1.7-10b981.svg)](https://github.com/mksglu/context-mode)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 

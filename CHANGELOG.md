@@ -2,6 +2,15 @@
 
 All notable changes to `dsh-plugin-context-mode` will be documented in this file.
 
+## [1.0.1] - 2026-11-09
+
+### Added
+- Added DSH Plugin badge to README.
+- Added non-commandline UI installation instructions to README.
+
+### Changed
+- Removed local drive paths from installation instructions.
+
 ## [1.0.0] - 2026-11-09
 
 ### Added
