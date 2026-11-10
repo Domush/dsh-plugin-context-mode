@@ -52,19 +52,36 @@ Context Mode is a lightweight, local-first context optimization engine designed 
 
 ## Installation
 
-### Method 1: Local Development / Linked Bundle
+### In DeepSeek Harness UI (No Command Line Needed)
+1. Open the DeepSeek Harness Web UI and navigate to **Settings** → **Plugins**.
+2. Click the **"Add Plugin"** button.
+3. Paste in the plugin name:
+   ```text
+   dsh-plugin-context-mode
+   ```
+4. Click **Install**. The plugin will be fetched from NPM and activated immediately.
 
-Link this directory into your DSH installation:
-
+### Via DeepSeek Harness CLI
+Run the plugin install command in your terminal:
 ```bash
-# In DSH workspace
-plugin_manager install_bundle target="link:F:/unity/vogel/plugins/dsh-plugin-context-mode"
+dsh plugin install dsh-plugin-context-mode
 ```
 
-### Method 2: npm Package
-
-```bash
-plugin_manager install_bundle target="dsh-plugin-context-mode"
+### Via Profile Configuration (`package.json`)
+Add the plugin to your DeepSeek Harness profile dependencies:
+```json
+{
+  "dependencies": {
+    "dsh-plugin-context-mode": "^1.0.0"
+  },
+  "dsh": {
+    "profile": {
+      "bundles": [
+        "dsh-plugin-context-mode"
+      ]
+    }
+  }
+}
 ```
 
 ---
