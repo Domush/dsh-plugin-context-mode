@@ -33,7 +33,36 @@ try {
 
 export const Config = ConfigSchema;
 
-export const inject = ["systemPrompt", "tools", "workingDirectory", "agents", "webServer", "workspaceRegistry"];
+export const inject = ["systemPrompt", "tools", "workingDirectory", "agents", "webServer", "workspaceRegistry", "connection"];
+
+/** Validate whether a requested directory is an approved workspace */
+function getApprovedWorkspace(ctx, requestedCwd) {
+  const allowed = new Set();
+  try {
+    if (ctx.workspaceRegistry && typeof ctx.workspaceRegistry.list === "function") {
+      for (const ws of ctx.workspaceRegistry.list()) {
+        if (ws && ws.path) allowed.add(path.resolve(ws.path));
+      }
+    }
+  } catch {}
+  try {
+    if (ctx.workingDirectory) {
+      const cur = ctx.workingDirectory.get?.() || ctx.workingDirectory.current;
+      if (cur) allowed.add(path.resolve(cur));
+      if (ctx.workingDirectory.defaultDirectory) allowed.add(path.resolve(ctx.workingDirectory.defaultDirectory));
+    }
+  } catch {}
+  allowed.add(path.resolve(process.cwd()));
+
+  if (requestedCwd && typeof requestedCwd === "string") {
+    const resolved = path.resolve(requestedCwd);
+    if (allowed.has(resolved)) {
+      return resolved;
+    }
+  }
+
+  return Array.from(allowed)[0] || path.resolve(process.cwd());
+}
 
 /** Normalize config object */
 function normalizeConfig(raw) {
@@ -181,10 +210,18 @@ export function apply(ctx, rawConfig) {
       path: "/api/context-mode",
       handler: async (req, res) => {
         try {
+          if (ctx.connection && typeof ctx.connection.requestRejection === "function") {
+            const rejection = ctx.connection.requestRejection(req);
+            if (rejection !== void 0) {
+              return sendJson(res, rejection, { ok: false, error: rejection === 401 ? "Unauthorized" : "Forbidden" });
+            }
+          }
+
           const urlObj = new URL(String(req.url), "http://localhost");
           const action = urlObj.searchParams.get("action") || "stats";
           const scope = urlObj.searchParams.get("scope") || "all";
-          const queryCwd = urlObj.searchParams.get("cwd") || process.cwd();
+          const rawCwd = urlObj.searchParams.get("cwd");
+          const queryCwd = getApprovedWorkspace(ctx, rawCwd);
 
           if (req.method === "GET") {
             if (action === "doctor") {
@@ -204,6 +241,11 @@ export function apply(ctx, rawConfig) {
           }
 
           if (req.method === "POST") {
+            const contentType = req.headers["content-type"] || "";
+            if (!contentType.includes("application/json")) {
+              return sendJson(res, 415, { ok: false, error: "Unsupported Media Type: expected application/json" });
+            }
+
             const bodyText = await readBoundedBody(req);
             const body = bodyText ? JSON.parse(bodyText) : {};
 
@@ -211,7 +253,7 @@ export function apply(ctx, rawConfig) {
               const purgeRes = store.purge({
                 sessionId: body.session_id,
                 sourceId: body.source,
-                worktree: body.worktree,
+                worktree: body.worktree ? getApprovedWorkspace(ctx, body.worktree) : undefined,
                 all: body.all
               });
               return sendJson(res, 200, { ok: true, result: purgeRes });

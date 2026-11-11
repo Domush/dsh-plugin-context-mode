@@ -1,7 +1,7 @@
 {
   "name": "dsh-plugin-context-mode",
-  "version": "1.0.1",
-  "description": "Native DSH plugin for context-mode: SQLite FTS5 indexing, sandboxed execution, and context window protection",
+  "version": "1.0.2",
+  "description": "Native DSH plugin for context-mode: SQLite FTS5 indexing, bounded execution, and context window protection",
   "type": "module",
   "license": "MIT",
   "author": "Phillip Webber <github@webbsense.com>",
@@ -21,7 +21,6 @@
     "fts5",
     "bm25",
     "rrf",
-    "sandbox",
     "compression"
   ],
   "scripts": {
@@ -45,7 +44,8 @@
     "README.md",
     "LICENSE",
     "CHANGELOG.md",
-    "CONTRIBUTING.md"
+    "CONTRIBUTING.md",
+    "screenshots.json"
   ],
   "publishConfig": {
     "access": "public"

@@ -116,7 +116,7 @@ In your `cordis.patch.yml` or DSH Settings:
 ## Tool Reference
 
 ### `ctx_execute`
-Execute code in a sandboxed subprocess.
+Execute code in a child process with output bounding (16 KB cap). Commands run with DSH's permissions and environment; outputs exceeding the cap are automatically indexed into SQLite FTS5.
 ```json
 {
   "language": "shell",

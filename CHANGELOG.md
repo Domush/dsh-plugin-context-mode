@@ -2,6 +2,14 @@
 
 All notable changes to `dsh-plugin-context-mode` will be documented in this file.
 
+## [1.0.2] - 2026-11-10
+
+### Security & Hardening
+- Enforced connection admission fence via `ctx.connection.requestRejection` on `/api/context-mode` routes to prevent unauthorized cross-origin/CSRF requests.
+- Validated workspace paths against `ctx.workspaceRegistry` to prevent targeting unapproved paths.
+- Enforced `application/json` Content-Type validation on POST requests.
+- Clarified tool descriptions and documentation to accurately specify child process execution with output bounding (16 KB cap) instead of OS sandboxing.
+
 ## [1.0.1] - 2026-11-09
 
 ### Added

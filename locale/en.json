@@ -1,6 +1,6 @@
 {
   "meta": {
     "title": "Context Mode",
-    "description": "Native support for context-mode (https://github.com/mksglu/context-mode): keeps tool output out of context window using local SQLite FTS5 search, sandboxed execution, and session journals."
+    "description": "Native support for context-mode (https://github.com/mksglu/context-mode): keeps tool output out of context window using local SQLite FTS5 search, bounded process execution, and session journals."
   }
 }
