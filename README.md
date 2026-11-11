@@ -8,7 +8,7 @@
 Native [DeepSeek Harness (DSH)](https://github.com/deepseek-ai) plugin adding full, native support for **[context-mode](https://github.com/mksglu/context-mode)** by [Mert Koseoglu](https://github.com/mksglu).
 
 ---
-<img width="771" height="777" alt="image" src="https://github.com/user-attachments/assets/661f78a8-30ab-4a4e-8128-4ef8bf62d4ee" />
+<img width="776" height="780" alt="image" src="https://github.com/user-attachments/assets/09c84324-ba88-4e28-af67-48390456612e" />
 
 ## What is Context Mode?
 
