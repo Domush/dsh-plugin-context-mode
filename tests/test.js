@@ -30,7 +30,7 @@ test("ContextModeStore - initialization, FTS5 schema, and indexing", () => {
 
     const indexRes = store.indexContent({
       sessionId: "session-1",
-      worktree: "F:/unity/vogel",
+      worktree: tmpDir,
       agent: "lead",
       kind: "content",
       label: "orbital.js",
@@ -60,7 +60,7 @@ test("ContextModeStore - initialization, FTS5 schema, and indexing", () => {
     // Journal events
     store.recordEvent({
       sessionId: "session-1",
-      worktree: "F:/unity/vogel",
+      worktree: tmpDir,
       agent: "lead",
       kind: "cmd",
       tool: "read",
